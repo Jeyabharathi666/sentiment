@@ -49,7 +49,6 @@ def get_sentiment_for_ticker(ticker):
 
 def main():
     tickers = ["^NSEI", "^NSEBANK"]
-    print_ticker=["NIFTY","NIFTY_BANK"]
     headers = ["NSE", "SENTIMENT_SCORE", "SENTIMENT",]
     rows = []
 
@@ -57,9 +56,9 @@ def main():
     for ticker in tickers:
         sentiment_score, sentiment_label = get_sentiment_for_ticker(ticker)
         if sentiment_score is not None:
-            rows.append([print_ticker, sentiment_score, sentiment_label])
+            rows.append([tickers, sentiment_score, sentiment_label])
         else:
-            rows.append([print_ticker, "NO DATA FOUND", "NO DATA FOUND"])
+            rows.append([tickers, "NO DATA FOUND", "NO DATA FOUND"])
 
     # Append rows to Google Sheet
     google_sheets.update_google_sheet_by_name(SHEET_ID, WORKSHEET_NAME, headers, rows)
