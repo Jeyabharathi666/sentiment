@@ -33,7 +33,7 @@ def get_sentiment_for_ticker(ticker):
                 sum_sentiment+=i
                 length+=1
             
-        avg_sentiment = sum_sentiments / length
+        avg_sentiment = sum_sentiment / length
         
         if avg_sentiment > 0:
             sentiment_label = "Positive"
