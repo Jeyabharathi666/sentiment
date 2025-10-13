@@ -43,22 +43,22 @@ def get_sentiment_for_ticker(ticker):
             sentiment_label = "None"
         else:
             sentiment_label = "Neutral"
-        return round(avg_sentiment, 4), sentiment_label
+        return round(avg_sentiment, 4), sentiment_label,sentiments
     else:
-        return None, None
+        return None, None,sentiments
 
 def main():
     tickers = ["^NSEI", "^NSEBANK"]
-    headers = ["NSE", "SENTIMENT_SCORE", "SENTIMENT",]
+    headers = ["NSE", "AVG_SENTIMENT_SCORE", "SENTIMENT","SENTIMENT LIST"]
     rows = []
 
     # Get sentiment data
     for ticker in tickers:
-        sentiment_score, sentiment_label = get_sentiment_for_ticker(ticker)
+        sentiment_score, sentiment_label,sentiments = get_sentiment_for_ticker(ticker)
         if sentiment_score is not None:
-            rows.append([ticker, sentiment_score, sentiment_label])
+            rows.append([ticker, sentiment_score, sentiment_label,sentiments])
         else:
-            rows.append([ticker, "NO DATA FOUND", "NO DATA FOUND"])
+            rows.append([ticker, "NO DATA FOUND", "NO DATA FOUND",sentiments])
 
     # Append rows to Google Sheet
     google_sheets.update_google_sheet_by_name(SHEET_ID, WORKSHEET_NAME, headers, rows)
