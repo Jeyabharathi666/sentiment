@@ -43,9 +43,9 @@ def get_sentiment_for_ticker(ticker):
             sentiment_label = "None"
         else:
             sentiment_label = "Neutral"
-        return round(avg_sentiment, 4), sentiment_label,sentiments
+        return round(avg_sentiment, 4), sentiment_label,str(sentiments)
     else:
-        return None, None,sentiments
+        return None, None,str(sentiments)
 
 def main():
     tickers = ["^NSEI", "^NSEBANK"]
